@@ -27,6 +27,7 @@ export default function MainMenu() {
 
     const navigate = useNavigate()
     const navigateToRegister = () => {
+
       navigate("/Register")
     }
 
