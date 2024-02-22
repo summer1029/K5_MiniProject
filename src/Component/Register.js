@@ -8,7 +8,7 @@ export default function Register() {
   const handleSubmit = async (name, email, password, birth) => {
     try {
 
-      if (name.trim() == "" || email.trim() == "" || password.trim() == "" || birth.trim() == "") {
+      if (name.trim() === "" || email.trim() === "" || password.trim() === "" || birth.trim() === "") {
         alert("Email address, password, name and birth cannot be empty!")
         return
       }
@@ -25,7 +25,9 @@ export default function Register() {
           birth: birth
         }),
       });
+      // json 형식이 아님
       const data = await response.json();
+      console.log("res 결과", response)
       console.log("데이터 결과", data)
 
       if (data.status == 200) {
@@ -34,6 +36,7 @@ export default function Register() {
         console.error("회원가입 실패:", data.error);
       }
     } catch (error) {
+      console.log(error)
       console.error('에러 발생:', error);
       throw error; // 에러를 다시 던져서 상위 컴포넌트에서 처리할 수 있도록 합니다.
     }
@@ -66,9 +69,10 @@ export default function Register() {
 //         birth : birth
 //       }),
 //     })
-//     .then(res => res.json())
-//     .then(result => console.log("결과: ", result))
-//     .catch(err => console.err('에러 발생:', err))
+//     .then(res => {
+//       console.log(res)
+//       res.json()})
+//     .catch(err => console.log('에러 발생:', err))
 //   }
 
 //   return (

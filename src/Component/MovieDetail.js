@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import Modal from './Modal'
-
 import movie1 from "../assets/poster/wonka.jpg"
 import movie2 from "../assets/poster/gungook.jpg"
 import movie3 from "../assets/poster/qukal.jpg"
@@ -13,6 +11,14 @@ import movie7 from "../assets/poster/deadman.jpg"
 import movie8 from "../assets/poster/agail.jpg"
 import movie9 from "../assets/poster/shark.jpg"
 import movie10 from "../assets/poster/dmz.jpg"
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function MovieDetail() {
     const param = useParams().index
@@ -76,31 +82,18 @@ export default function MovieDetail() {
         setRating(newRating)
     })
 
-    const [isOpen, setIsOpen] = useState(false)
-    const [content, setContent] = useState('')
-    const [grade, setGrade] = useState('')
+    const [open, setOpen] = React.useState(false);
 
-    const openModal = () => {
-        setIsOpen(true)
-        console.log(isOpen)
-    }
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-    const closeModal = () => {
-        setIsOpen(false)
-    }
-
-    const updateContent = (newContent) => {
-        setContent(newContent)
-    }
-
-    const updateGrade = (newGrade) => {
-        setGrade(newGrade)
-    }
-
-    const writerInDiv = document.getElementById("writer")
-    console.log("writerInDiv: ",writerInDiv)
-    const writerId = writerInDiv.innerHTML
-    console.log("writerId", writerId)
+    const divWriter = document.getElementById("writer")
+    console.log("divWriter: ",divWriter)
 
     const getWriterId = (string) => {
         return string.substring(0, string.indexOf("@"))
@@ -155,8 +148,60 @@ export default function MovieDetail() {
                             </div>
 
                             <div className='flex justify-end items-center text-white mt-1'>
-                                <button onClick={() => openModal()} className='mr-3'>수정</button>
-                                <button className='mr-2'>삭제</button>
+                                 <React.Fragment>
+                                    <Button variant="outlined" onClick={handleClickOpen}>
+                                        Open form dialog
+                                    </Button>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        PaperProps={{
+                                        component: 'form',
+                                        onSubmit: (event) => {
+                                            event.preventDefault();
+                                            const formData = new FormData(event.currentTarget);
+                                            const formJson = Object.fromEntries(formData.entries());
+                                            const email = formJson.email;
+                                            console.log(email);
+                                            handleClose();
+                                        },
+                                        }}>
+                                        <DialogTitle>Modify</DialogTitle>
+                                        <DialogContent>
+                                            {/* <DialogContentText>
+                                                To subscribe to this website, please enter your email address here. We
+                                                will send updates occasionally.
+                                            </DialogContentText> */}
+                                            <TextField
+                                                autoFocus
+                                                required
+                                                margin="dense"
+                                                id="name"
+                                                name="email"
+                                                label="Email Address"
+                                                type="email"
+                                                fullWidth
+                                                variant="standard"
+                                            />
+                                            <TextField
+                                                autoFocus
+                                                required
+                                                margin="dense"
+                                                id="name"
+                                                name="email"
+                                                label="Email Address"
+                                                type="email"
+                                                fullWidth
+                                                variant="standard"
+                                            />
+                                        </DialogContent>
+                                        <DialogActions>
+                                        <Button onClick={handleClose}>Cancel</Button>
+                                        <Button type="submit">Subscribe</Button>
+                                        </DialogActions>
+                                    </Dialog>
+                                    </React.Fragment>                          
+                                
                             </div>
                         </div>
                     ))}
