@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import Modal from './Modal'
+
 import movie1 from "../assets/poster/wonka.jpg"
 import movie2 from "../assets/poster/gungook.jpg"
 import movie3 from "../assets/poster/qukal.jpg"
@@ -74,6 +76,36 @@ export default function MovieDetail() {
         setRating(newRating)
     })
 
+    const [isOpen, setIsOpen] = useState(false)
+    const [content, setContent] = useState('')
+    const [grade, setGrade] = useState('')
+
+    const openModal = () => {
+        setIsOpen(true)
+        console.log(isOpen)
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+    const updateContent = (newContent) => {
+        setContent(newContent)
+    }
+
+    const updateGrade = (newGrade) => {
+        setGrade(newGrade)
+    }
+
+    const writerInDiv = document.getElementById("writer")
+    console.log("writerInDiv: ",writerInDiv)
+    const writerId = writerInDiv.innerHTML
+    console.log("writerId", writerId)
+
+    const getWriterId = (string) => {
+        return string.substring(0, string.indexOf("@"))
+    }
+
   return (
     <div className='bg-black h-full w-full'>
     {movie && dbReview && (
@@ -90,25 +122,25 @@ export default function MovieDetail() {
                 <div className='text-lg font-medium text-white'>출연진: {dbData.casts}</div>   
             </div>  
             <div className='pl-10 pr-10 pb-10' style={{ width: '100%' }}>
-            
                 <div className='w-full'>
                     {dbReview.map((rv, idx) => ( 
-                        <div className='flex-col justify-center items-center'>
-                            <div className='flex justify-center items-center border border-solid border-gray-400 p-3 mb-5'>
-                                <div className='flex items-center justify-center text-lg font-medium text-center text-white w-2/12'>
-                                    <svg className="fill-red-400 h-8 w-8 mr-3" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><title>Profile</title><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
-                                    {rv.writer}
+                        <div className='flex-col justify-center items-center mb-5'>
+                            <div className='flex justify-between items-center border border-solid border-gray-400 p-3'>
+                                <div id="writer" className='flex-col items-center justify-center text-lg font-medium text-white w-32 pr-3 ml-3 overflow-hidden text-ellipsis border-r-2 border-gray-400'>
+                                    <svg className="fill-white h-8 w-58 mr-2 pl-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                                    {getWriterId(rv.writer)}
                                 </div>
 
-                                <div className='text-2xl font-bold text-center text-white w-1/12'>
+                                <div className='text-2xl font-bold text-center text-white w-16 ml-3 pr-5 border-r-2 border-gray-400'>
                                     ⭐{rv.grade}
                                 </div>
 
-                                <div className='text-lg font-medium text-white w-5/12'>
+
+                                <div className='text-lg font-medium text-white border-r-2 border-gray-400 w-560 ml-3 pr-3'>
                                     {rv.content}
                                 </div>
 
-                                <div className='text-lg font-medium text-center text-white w-2/12'>
+                                <div className='text-lg font-medium text-center text-white w-48  ml-3 pr-3 border-r-2 border-gray-400'>
                                     <button onClick={() => handleRating(idx,1)} className='mr-2'>{rating[idx]>=1 ? '❤️':'⭕'}</button>
                                     <button onClick={() => handleRating(idx,2)} className='mr-2'>{rating[idx]>=2 ? '❤️':'⭕'}</button>
                                     <button onClick={() => handleRating(idx,3)} className='mr-2'>{rating[idx]>=3 ? '❤️':'⭕'}</button>
@@ -116,15 +148,15 @@ export default function MovieDetail() {
                                     <button onClick={() => handleRating(idx,5)} className='mr-2'>{rating[idx]>=5 ? '❤️':'⭕'}</button>
                                 </div>
 
-                                <div className='text-lg font-medium text-center text-white w-2/12'>
+                                <div className='text-lg font-medium text-center text-white w-28 ml-3 pr-3'>
                                     {rv.date}
                                 </div>
 
                             </div>
 
-                            <div className='flex justify-end items-center text-white'>
-                                <button>수정</button>
-                                <button>삭제</button>
+                            <div className='flex justify-end items-center text-white mt-1'>
+                                <button onClick={() => openModal()} className='mr-3'>수정</button>
+                                <button className='mr-2'>삭제</button>
                             </div>
                         </div>
                     ))}
