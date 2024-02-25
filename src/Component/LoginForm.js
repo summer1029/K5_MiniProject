@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { stLogin } from "../Component/AtomSt";
+import { userEmail } from "../Component/AtomSt";
 
 export default function LoginForm() {
   const [inputId, setInputId] = useState("")
   const [inputPw, setInputPw] = useState("")
   const [isLogin, setIsLogin] = useRecoilState(stLogin); 
+  const setUserId = useSetRecoilState(userEmail); 
   const navigate = useNavigate();
 
   const handleInputId = (e) => {
@@ -41,7 +43,13 @@ export default function LoginForm() {
     .then((res) => {
       // 서버의 DB랑 비교해서 서버에서 에러를 전달해주면
       if (res.ok) {
-        setIsLogin(true) ;
+        setIsLogin(true)
+        setUserId(inputId)
+
+        const accessToken = res.headers.get("Authorization")
+        console.log(accessToken)
+        localStorage.setItem('loginToken', accessToken);
+        
         // home page로 이동
         navigate("/")
       } else {

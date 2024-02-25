@@ -31,7 +31,7 @@ export default function MovieInfo() {
     //   };
 
     useEffect (() => {
-        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?"
+        let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?"
         url = url + `key=${apikey}`
         url = url + '&targetDt=20240216'
         console.log(url)

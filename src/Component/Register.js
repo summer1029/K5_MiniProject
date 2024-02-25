@@ -30,7 +30,7 @@ export default function Register() {
       console.log("res 결과", response)
       console.log("데이터 결과", data)
 
-      if (data.status == 200) {
+      if (data.status === 200) {
         navigate("/Login"); // 회원가입 성공 시 로그인 페이지로 이동합니다.
       } else {
         console.error("회원가입 실패:", data.error);

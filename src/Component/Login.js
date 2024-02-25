@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { stLogin } from "./AtomSt"
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
-  const [user, setUser] = useState();
   const [isLogin, setIsLogin] = useRecoilState(stLogin);  
   console.log("login", isLogin)
 
@@ -16,20 +15,17 @@ export default function Login() {
       navigate("/Login")
   }
 
-  const handleLogin = (userIn) => {
-    localStorage.setItem("user", "userIn")
-    setUser(userIn)
+  useEffect(() => {
+    const loginToken = localStorage.getItem("loginToken");
+    if (loginToken) {
+      setIsLogin(true);
+    }
+  }, [setIsLogin]);
 
-    // 로그인이 되면 true
-    setIsLogin(true)
-  }
-
-  const handleLogout = (userIn) => {
-    localStorage.removeItem("user")
-    setUser(null)
-
-    // 로그아웃이 되면 false
-    setIsLogin(false)
+  const handleLogout = () => {
+    localStorage.removeItem("loginToken");
+    setIsLogin(false);
+    navigate("/Login");
   }
 
   return (

@@ -6,3 +6,8 @@ export const stLogin = atom({
     key : "stLogin",
     default : false
 })
+
+export const userEmail = atom({
+    key : "userEmail",
+    default : ""
+})
