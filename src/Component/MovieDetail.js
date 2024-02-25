@@ -37,7 +37,7 @@ export default function MovieDetail() {
     const [selectedDeleteId, setSelectedDeleteId] = useState()
     const [selectedContent, setSelectedContent] = useState()
     const [selectedGrade, setselectedGrade] = useState()
-    const userId = useRecoilState(userEmail); 
+    const [userId] = useRecoilState(userEmail); 
 
     const posterImage = [movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10]
 
@@ -207,10 +207,11 @@ export default function MovieDetail() {
                          <React.Fragment>
                             <Button variant="outlined" onClick={(e) => handleClickOpenInsert(e)}
                                 style={{
-                                    backgroundColor: 'white',
+                                    backgroundColor: red[400],
                                     fontWeight: "bold",
-                                    color: red[400],
-                                    borderColor: "white"
+                                    color: "white",
+                                    borderColor: red[400],
+                                    marginRight: "5px"
                                 }}>
                                 등록
                             </Button>
@@ -223,16 +224,14 @@ export default function MovieDetail() {
                                     <DialogContentText>
                                         등록할 내용을 작성해주세요
                                     </DialogContentText>
-                                    
-
                                     <TextField
-                                        value={userId}
                                         disabled
-                                        id="outlined-disabled"
-                                        label="Disabled"
+                                        id="email"
+                                        label="Email"
+                                        defaultValue={userId}
+                                        variant="standard"
                                         fullWidth
                                     />
-                                    {userId}
                                     <TextField
                                         onChange={handleContent}
                                         autoFocus
@@ -270,30 +269,30 @@ export default function MovieDetail() {
                     <div className='pl-10 pr-10 pb-10' style={{ width: '100%' }}>
                         <div className='w-full'>
                             {dbReview.map((rv, idx) => (
-                                <div key={idx} className='flex-col justify-center items-center mb-5'>
-                                    <div className='flex justify-between items-center border border-solid border-gray-400 p-3'>
-                                        <div id="writer" className='flex-col items-center justify-center text-lg font-medium text-white w-32 pr-3 ml-3 overflow-hidden text-ellipsis border-r-2 border-gray-400'>
-                                            <svg className="fill-white h-8 w-58 mr-2 pl-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
+                                <div key={idx} className='flex-col justify-center items-center mb-5 bg-gray-800 rounded-lg'>
+                                    <div className='flex justify-between items-center border border-solid border-gray-400 p-3 flex-nowrap'>
+                                        <div id="writer" className='flex items-center justify-center text-lg text-center text-white font-medium w-32 pr-3 border-2 border-gray-400'>
+                                            <svg className="fill-white h-8 w-8 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
                                             {getWriterId(rv.writer)}
                                         </div>
-
-                                        <div className='text-2xl font-bold text-center text-white w-16 ml-3 pr-5 border-r-2 border-gray-400'>
+{/* border-r-2 */}
+                                        <div className='text-2xl font-bold text-center text-white w-16 mr-3 border-2 border-gray-400'>
                                             ⭐{rv.grade}
                                         </div>
 
-                                        <div className='text-lg font-medium text-white border-r-2 border-gray-400 w-560 ml-3 pr-3'>
+                                        <div className='text-lg font-medium text-white border-2 border-gray-400 w-560 ml-3 pr-3'>
                                             {rv.content}
                                         </div>
 
                                         {/* <div className='text-lg font-medium text-center text-white w-48  ml-3 pr-3 border-r-2 border-gray-400'>
-                                    <button onClick={() => handleRating(idx,1)} className='mr-2'>{rating[idx]>=1 ? '❤️':'⭕'}</button>
-                                    <button onClick={() => handleRating(idx,2)} className='mr-2'>{rating[idx]>=2 ? '❤️':'⭕'}</button>
-                                    <button onClick={() => handleRating(idx,3)} className='mr-2'>{rating[idx]>=3 ? '❤️':'⭕'}</button>
-                                    <button onClick={() => handleRating(idx,4)} className='mr-2'>{rating[idx]>=4 ? '❤️':'⭕'}</button>
-                                    <button onClick={() => handleRating(idx,5)} className='mr-2'>{rating[idx]>=5 ? '❤️':'⭕'}</button>
-                                </div> */}
+                                                <button onClick={() => handleRating(idx,1)} className='mr-2'>{rating[idx]>=1 ? '❤️':'⭕'}</button>
+                                                <button onClick={() => handleRating(idx,2)} className='mr-2'>{rating[idx]>=2 ? '❤️':'⭕'}</button>
+                                                <button onClick={() => handleRating(idx,3)} className='mr-2'>{rating[idx]>=3 ? '❤️':'⭕'}</button>
+                                                <button onClick={() => handleRating(idx,4)} className='mr-2'>{rating[idx]>=4 ? '❤️':'⭕'}</button>
+                                                <button onClick={() => handleRating(idx,5)} className='mr-2'>{rating[idx]>=5 ? '❤️':'⭕'}</button>
+                                            </div> */}
 
-                                        <div className='text-lg font-medium text-center text-white w-28 ml-3 pr-3'>
+                                        <div className='text-lg font-medium text-center border-2 text-white w-28 ml-3 pr-3'>
                                             {rv.date}
                                         </div>
 
@@ -301,10 +300,10 @@ export default function MovieDetail() {
                                             <React.Fragment>
                                                 <Button review={rv} variant="outlined" onClick={(e) => handleClickOpen(e, rv.review_id, rv.content, rv.grade)}
                                                     style={{
-                                                        backgroundColor: 'white',
+                                                        backgroundColor: red[400],
                                                         fontWeight: "bold",
-                                                        color: red[400],
-                                                        borderColor: "white",
+                                                        color: "white",
+                                                        borderColor: red[400],
                                                         marginRight: "5px"
                                                     }}>
                                                     수정
@@ -363,10 +362,11 @@ export default function MovieDetail() {
                                             <React.Fragment>
                                                 <Button review={rv} variant="outlined" onClick={(e) => handleClickOpenDelete(e, rv.review_id)}
                                                     style={{
-                                                        backgroundColor: 'white',
+                                                        backgroundColor: red[400],
                                                         fontWeight: "bold",
-                                                        color: red[400],
-                                                        borderColor: "white"
+                                                        color: "white",
+                                                        borderColor: red[400],
+                                                        marginRight: "5px"
                                                     }}>
                                                     삭제
                                                 </Button>

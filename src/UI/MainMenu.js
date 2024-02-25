@@ -89,9 +89,6 @@ export default function MainMenu() {
                                                             justifyItems : "center"
                                                             }}
                                         className="mb-5">
-                                        
-                                        {/* <div>{`movie${index}`}</div> */}    
-                                        {/* <div className="text-white text-base"> {item.title} </div>  */}
                                     </Link>
                                 ))}
                             </div>
@@ -108,40 +105,14 @@ export default function MainMenu() {
                 return (
                     <MovieInfo />
                 )
-            case "Room" :
-                return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">상영관 page</h1>
-                    </div>
-                )
-            case "Theater" :
-                return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">영화관 page</h1>
-                    </div>
-                )
-            case "Book" :
-                return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">예매 page</h1>
-                    </div>
-            )
-            case "Review" :
-                return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">리뷰 page</h1>
-                    </div>
-            )
-            case "Board" :
-                return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">게시판 page</h1>
-                    </div>
-            )
             case "Help" :
                 return (
-                    <div className='flex-col bg-black w-4/5'>
-                        <h1 className="text-white">고객센터 page</h1>
+
+                    <div className='flex justify-center items-center bg-black w-4/5' disabled>
+                        <svg className="animate-spin items-center fill-white h-20 w-20 mr-5 ..." xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                        </svg>
+                        <div className="text-white text-3xl">Processing...</div>
                     </div>
             )
         }
@@ -190,35 +161,41 @@ export default function MainMenu() {
                     </svg>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>영화<br/></div>
                 </button>
-                <button type="button" onClick={() => changePage("Movie")} className='flex m-5'>
+                <Link to="/movie/0" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>웡카<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Room")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/1" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>건국전쟁<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Theater")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/2" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>귀멸의 칼날<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Book")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/3" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>시민덕희<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Review")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/4" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>소풍<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Board")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/5" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>도그데이즈<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Board")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/6" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>데드맨<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Board")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/7" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>아가일<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Board")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/8" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>아기상어 극장판<br/></div>
-                </button>
-                <button type="button" onClick={() => changePage("Board")} className='flex m-5'>
+                </Link>
+                <Link to="/movie/9" className='flex m-5 ml-12'>
                     <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>DMZ 동물특공대<br/></div>
+                </Link>
+                <button type="button" onClick={() => changePage("Help")} className='flex m-5'>
+                <svg className='fill-white h-7 w-7 hover:fill-red-400' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                </svg>
+                    <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>고객센터<br/></div>
                 </button>
                 
 
