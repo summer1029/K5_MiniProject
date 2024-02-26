@@ -12,6 +12,16 @@ export default function LoginForm() {
   const setUserId = useSetRecoilState(userEmail); 
   const navigate = useNavigate();
 
+  // userId가 계속 유지 되지 않는 이유 : 로컬 스토리지에 저장되지 않아, 페이지를 새로고침 하거나 이동할 때 userId가 초기화 된다
+  // -> userId를 지속적으로 사용하기 위해서는 로컬 스토리지에 userId를 저장하고 페이지가 로드될 때 로컬 스토리지에서 userId를 가져와 recoil상테에 설정 필요
+  useEffect(() => {
+    // 페이지가 로드될 때 로컬 스토리지에서 userId를 가져와 recoil 상태에 설정
+    const userIdFromLocal = localStorage.getItem("userId")
+    if(userIdFromLocal) { 
+      setUserId(userIdFromLocal)
+    }
+  }, [setUserId])
+
   const handleInputId = (e) => {
     setInputId(e.target.value)
   }
@@ -44,11 +54,14 @@ export default function LoginForm() {
       // 서버의 DB랑 비교해서 서버에서 에러를 전달해주면
       if (res.ok) {
         setIsLogin(true)
+        // userId에 사용자가 입력한 이메일 저장
         setUserId(inputId)
 
         const accessToken = res.headers.get("Authorization")
-        console.log(accessToken)
+        // console.log(accessToken)
         localStorage.setItem('loginToken', accessToken);
+        // 저장된 userId를 로컬 스토리지에 저장
+        localStorage.setItem("userId", inputId)
         
         // home page로 이동
         navigate("/")
