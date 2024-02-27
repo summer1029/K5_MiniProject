@@ -100,7 +100,7 @@ export default function MainMenu() {
                                         marginRight: "10px",
                                         flexDirection: "column",
                                         justifyItems: "center"
-                                        }}
+                                    }}
                                         className="mb-5">
                                     </Link>
                                 ))}

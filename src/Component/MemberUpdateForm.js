@@ -19,19 +19,19 @@ const MemberUpdatePage = () => {
         }
 
         fetch("http://10.125.121.181:8080/member/update", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: localStorage.getItem("loginToken"),
-                },
-                body: JSON.stringify({ password:password }), // JSON 형태로 데이터 전송
-            })
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("loginToken"),
+            },
+            body: JSON.stringify({ password: password }), // JSON 형태로 데이터 전송
+        })
             .then(res => res.json())
             .then(data => {
-                if(data.message === "비밀번호가 성공적으로 변경되었습니다.") {
+                if (data.message === "비밀번호가 성공적으로 변경되었습니다.") {
                     alert("비밀번호가 성공적으로 변경되었습니다.")
                     window.location.href = "http://192.168.0.26:3000/" // 이거는 컴퓨터 ip주소로
-                }  
+                }
             })
             .catch((err) => console.error(err));
     };

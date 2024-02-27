@@ -79,12 +79,12 @@ export default function MovieDetail() {
   };
 
   // DBReview에서 리뷰 데이터를 받아오기
-  const getDbReview = (movieId, type ,order) => {
+  const getDbReview = (movieId, type, order) => {
     fetch(`http://10.125.121.181:8080/movie/review/${movieId}?ordertype=${type}&order=${order}`, {
       method: "GET",
     })
       .then((res) => res.json())
-      .then((data) => { console.log(data) ; return setDbReview(data)})
+      .then((data) => { console.log(data); return setDbReview(data) })
       .catch((err) => console.error(err));
   };
 
@@ -94,7 +94,7 @@ export default function MovieDetail() {
     const id = parseInt(param) + 1
     getDbMovie(id)
     getDbReview(id, sortBy, orderBy); // sortBy와 orderBy 값을 전달
-}, [param, sortBy, orderBy]);
+  }, [param, sortBy, orderBy]);
 
   // const [rating, setRating] = useState([]);
   // const handleRating = (idx, selectedRating) => {
@@ -252,30 +252,30 @@ export default function MovieDetail() {
           <div className="p-10 flex">
             <img src={posterImage[param]} alt="Movie Poster" className="w-72 mb-5" />
             <div className="ml-5 mt-24">
-            <div className="text-3xl font-extrabold mb-3 text-white">
-              {movie.movieNm}
-            </div>
-            <div className="text-lg font-medium text-white">
-              개봉일: {dbData.release_date}
-            </div>
-            <div className="text-lg font-medium text-white">
-              상영시간: {dbData.running_time}
-            </div>
-            <div className="text-lg font-medium text-white">
-              등급: {dbData.age_rating}
-            </div>
-            <div className="text-lg font-medium text-white">
-              장르: {dbData.genre}
-            </div>
-            <div className="text-lg font-medium text-white">
-              시놉시스: {dbData.synopsis}
-            </div>
-            <div className="text-lg font-medium text-white">
-              감독: {dbData.director}
-            </div>
-            <div className="text-lg font-medium text-white">
-              출연진: {dbData.casts}
-            </div>
+              <div className="text-3xl font-extrabold mb-3 text-white">
+                {movie.movieNm}
+              </div>
+              <div className="text-lg font-medium text-white">
+                개봉일: {dbData.release_date}
+              </div>
+              <div className="text-lg font-medium text-white">
+                상영시간: {dbData.running_time}
+              </div>
+              <div className="text-lg font-medium text-white">
+                등급: {dbData.age_rating}
+              </div>
+              <div className="text-lg font-medium text-white">
+                장르: {dbData.genre}
+              </div>
+              <div className="text-lg font-medium text-white">
+                시놉시스: {dbData.synopsis}
+              </div>
+              <div className="text-lg font-medium text-white">
+                감독: {dbData.director}
+              </div>
+              <div className="text-lg font-medium text-white">
+                출연진: {dbData.casts}
+              </div>
             </div>
           </div>
           <div className="flex justify-end items-center text-white mb-3 mr-12">
@@ -345,7 +345,7 @@ export default function MovieDetail() {
               onClick={() => {
                 // setSortBy(sortBy === "grade" ? "date" : "grade")
                 setSortBy("grade")
-                setOrderBy(orderBy === "asc" ? "desc" : "asc"); 
+                setOrderBy(orderBy === "asc" ? "desc" : "asc");
                 // handleSortReviews(orderBy === "asc" ? "desc" : "asc");
               }}>
               {orderBy === "asc" ? "▼ 등급 낮은 순" : "▲ 등급 높은 순"}
@@ -356,9 +356,9 @@ export default function MovieDetail() {
               onClick={() => {
                 // setSortBy(sortBy === "date" ? "grade" : "date")
                 setSortBy("date")
-                setOrderBy(orderBy === "asc" ? "desc" : "asc"); 
+                setOrderBy(orderBy === "asc" ? "desc" : "asc");
               }}>
-                {orderBy === "asc" ? "▼ 오래된 순" : "▲ 최신 순"}
+              {orderBy === "asc" ? "▼ 오래된 순" : "▲ 최신 순"}
             </button>
           </div>
           <div className="pl-10 pr-10 pb-10">
@@ -451,7 +451,7 @@ export default function MovieDetail() {
                           </Dialog>
                         </React.Fragment>
                       </div>
-                        {/* 리뷰 삭제 모달 */}
+                      {/* 리뷰 삭제 모달 */}
                       <div className="items-center text-white mt-1">
                         <React.Fragment>
                           <Button

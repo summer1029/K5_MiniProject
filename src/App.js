@@ -29,7 +29,7 @@ function App() {
           pauseOnHover
           theme="colored"
           transitionBounce
-          />
+        />
         <Routes>
           <Route path='/' element={<MainMenu />} />
           <Route path='/Login' element={<LoginForm />} />
@@ -38,11 +38,11 @@ function App() {
           <Route path="/movie/:index" Component={MovieDetail_tostify} />
           <Route path='/memberUpdate' element={<MemberUpdatePage />} />
           <Route path='/memberDelete' element={<MemberDeletePage />} />
-          
+
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
-    
+
   );
 }
 

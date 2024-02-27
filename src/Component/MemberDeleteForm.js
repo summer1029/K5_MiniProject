@@ -33,12 +33,12 @@
 //                 console.error(err)
 //                 toastErr('리뷰 수정 권한 에러');
 //               })
-              
+
 //             }
 //             const toastSuccess = (message) => {
 //                 toast.success(message)
 //                 }
-              
+
 //                 const toastErr = (message) => {
 //                   toast.error(message)
 //                 }
@@ -67,6 +67,7 @@
 
 // export default MemberDeletePage;
 
+// alert가 작동을 안하네 -> toastfy로 대체
 import React, { useState } from "react";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -79,7 +80,7 @@ const MemberDeletePage = () => {
     const toastSuccess = (message) => {
         toast.success(message)
     }
-    
+
     const toastErr = (message) => {
         toast.error(message)
     }
@@ -92,23 +93,23 @@ const MemberDeletePage = () => {
 
         fetch("http://10.125.121.181:8080/member/delete", {
             method: "DELETE",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
-                Authorization: localStorage.getItem("loginToken") 
+                Authorization: localStorage.getItem("loginToken")
             }
         })
-        .then((res) => {
-            if (res.ok) {
-                toastSuccess("회원 계정 삭제 성공");
-                window.location.href = "http://192.168.0.26:3000/";
-            } else {
-                throw new Error("회원 계정 삭제 실패");
-            }
-        })
-        .catch((err) => {
-            console.error(err);
-            toastErr('회원 계정 삭제 중 오류 발생');
-        });
+            .then((res) => {
+                if (res.ok) {
+                    toastSuccess("회원 계정 삭제 성공");
+                    window.location.href = "http://192.168.0.26:3000/";
+                } else {
+                    throw new Error("회원 계정 삭제 실패");
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                toastErr('회원 계정 삭제 중 오류 발생');
+            });
     };
 
     return (
@@ -116,7 +117,7 @@ const MemberDeletePage = () => {
             <div className="bg-black min-h-screen flex justify-center items-center">
                 <div className="w-full max-w-md p-8 bg-white rounded-lg">
                     <div className="text-2xl font-extrabold text-center text-red-400 mb-5">회원 계정 삭제</div>
-                    <div className="text-1xl font-bold text-center text-red-400 mb-5">정말로 계정을 삭제하시겠습니까? <br/> 이메일 확인을 진행해주세요</div>
+                    <div className="text-1xl font-bold text-center text-red-400 mb-5">정말로 계정을 삭제하시겠습니까? <br /> 이메일 확인을 진행해주세요</div>
                     <form className="space-y-2 md:space-y-3">
                         <div>
                             <label htmlFor="email" className="block mb-2 text-base font-medium text-gray-900">Email</label>
