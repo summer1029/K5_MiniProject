@@ -24,7 +24,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import StarIcon from "@mui/icons-material/Star";
 import { red } from "@mui/material/colors";
 
-export default function MovieDetail() {
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export default function MovieDetail_toastfy() {
   const param = useParams().index;
 
   const apikey = process.env.REACT_APP_APIKEY;
@@ -158,13 +161,19 @@ export default function MovieDetail() {
         grade: grade,
       })
     })
-      .then((res) => {
-        // res.json()
-        alert("리뷰 수정이 완료되었습니다")
+    .then((res) => {
+      if (res.ok) {
+        toastSuccess("리뷰 수정 성공")
         window.location.reload()
+        } else {
+          throw new Error("리뷰 수정 실패")
+        }
       })
-      .catch((err) => console.error(err));
-  };
+    .catch((err) => {
+      console.error(err)
+      toastErr('리뷰 수정 권한 에러');
+    })
+};
 
   // 리뷰 삭제 fetch
   const handleDelete = (reviewId) => {
@@ -175,14 +184,16 @@ export default function MovieDetail() {
         Authorization: localStorage.getItem("loginToken"),
       },
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error");
-        }
-        window.location.reload();
-        alert("리뷰 삭제가 완료되었습니다")
-      })
-      .catch((err) => console.error(err));
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Error");
+      }
+      toastSuccess("리뷰 삭제 성공");
+      window.location.reload();
+    })
+    .catch((err) => {
+      console.error(err)
+      toastErr('리뷰 삭제 권한 에러')});
   };
 
   // 리뷰 등록 fetch
@@ -198,13 +209,25 @@ export default function MovieDetail() {
         grade: grade,
       }),
     })
-      .then((res) => {
-        res.json()
-        alert("리뷰 등록이 완료되었습니다")
-      })
-      .then(window.location.reload())
-      .catch((err) => console.error(err));
-  };
+    .then((res) => {
+      if (res.ok) {
+        toastSuccess("리뷰 등록 성공")
+        window.location.reload()
+      }else {
+        throw new Error("리뷰 등록 실패")
+      }} )
+    .catch((err) => {
+      console.error(err)
+      toastErr('리뷰 등록 권한 에러')});
+};
+
+  const toastSuccess = (message) => {
+  toast.success(message)
+  }
+
+  const toastErr = (message) => {
+    toast.error(message)
+  }
 
   // const [sortedReviews, setSortedReviews] = useState([]); // 정렬된 리뷰
   // const [sortBy, setSortBy] = useState("grade") // 정렬 기준 - Grade or Date
@@ -249,7 +272,7 @@ export default function MovieDetail() {
     <div className="bg-black h-full w-full">
       {movie && dbReview && (
         <div>
-          <div className="p-10 flex">
+          <div className="pl-10 pt-10 pr-10 flex">
             <img src={posterImage[param]} alt="Movie Poster" className="w-72 mb-5" />
             <div className="ml-5 mt-24">
             <div className="text-3xl font-extrabold mb-3 text-white">
@@ -341,7 +364,7 @@ export default function MovieDetail() {
             {/* 리뷰 정렬 버튼 */}
             <button
               variant="outlined"
-              className="hover:underline text-white px-4 py-2 rounded-md mr-2"
+              className="hover:underline text-white rounded-md mr-2"
               onClick={() => {
                 // setSortBy(sortBy === "grade" ? "date" : "grade")
                 setSortBy("grade")
@@ -503,3 +526,4 @@ export default function MovieDetail() {
     </div>
   );
 }
+

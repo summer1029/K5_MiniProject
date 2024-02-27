@@ -7,6 +7,12 @@ module.exports = {
         '560':'35rem',
       }
     },
+    fontFamily : {
+        "jua" : ["Jua-Regular"],
+        "appleB" : ["AppleSDGothicNeoB"],
+        "appleM" : ["AppleSDGothicNeoM"],
+        "appleL" : ["AppleSDGothicNeoL"],
+      },
   },
   plugins: [],
 }

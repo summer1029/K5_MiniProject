@@ -52,7 +52,6 @@ export default function MainMenu() {
 
     const moviePoster = [movie0, movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9]
     const page = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
     const slideRef = useRef(null);
 
     const scrollLeft = () => {
@@ -74,12 +73,12 @@ export default function MainMenu() {
             case "Home":
                 return (
                     <div className="flex-col w-4/5 bg-black h-svh">
-                        <div className="tracking-tight ml-5 mr-5 h-1/2 border-solid border-2 border-black" style={{ backgroundImage: `url(${bgimg})`, backgroundSize: "cover" }}>
+                        <div className="tracking-tight ml-5 mr-5 h-1/2 border-solid border-2 border-black" style={{ backgroundImage: `url(${bgimg})`, backgroundSize: "auto" }}>
                             <div className='font-semibold text-3xl text-end mr-5 mt-40 tracking-tight text-white'>
-                                Title
+                                웡카
                             </div>
                             <div className='font-semibold text-lg text-end mr-5 tracking-tight text-white'>
-                                Content bla~bla~
+                                세상에서 가장 달콤한 여정 좋은 일은 모두 꿈에서부터 시작된다!
                             </div>
                         </div>
                         <div className='tracking-tight h-1/2'>
@@ -93,7 +92,7 @@ export default function MainMenu() {
                                     console.log("page:", page),
                                     <Link to={`/movie/${page}`} style={{
                                         display: "inline-block",
-                                        width: "180px", // 여기에 슬라이드의 너비를 조정
+                                        width: "180px", // 여기에 슬라이드의 너비 조정
                                         height: "248px",
                                         // minWidth: "200px", // 최소 너비 지정 (원하는 값으로 변경 가능)
                                         background: `url(${item})`,
@@ -101,7 +100,7 @@ export default function MainMenu() {
                                         marginRight: "10px",
                                         flexDirection: "column",
                                         justifyItems: "center"
-                                    }}
+                                        }}
                                         className="mb-5">
                                     </Link>
                                 ))}
@@ -112,7 +111,6 @@ export default function MainMenu() {
                                 <button onClick={scrollRight} className="font-semibold text-lg tracking-tight text-white mt-2 ml-1 hover:text-red-400">▶️</button>
                             </div>
                         </div>
-                        {/* <div className='font-semibold text-lg tracking-tight ml-5 text-white h-1/5'>Social</div> */}
                     </div>
                 )
             case "Movie":
@@ -133,15 +131,15 @@ export default function MainMenu() {
     }
 
     return (
-        <div>
-            <nav className="flex flex-wrap justify-between items-center bg-black">
-                <button type="button" onClick={() => changePage("Home")} className='flex items-center text-red-400 w-1/5 m-5'>
+        <div className="flex flex-col h-screen">
+            <nav className="flex flex-nowrap justify-between items-center bg-black flex-grow">
+                <button type="button" onClick={() => changePage("Home")} className='flex items-center text-red-400 m-5'>
                     <div className='font-extrabold font-appleB text-4xl tracking-tight'>
                         StellaNeX
                     </div>
                 </button>
 
-                <div className='block flex-grow lg:flex lg:items-center lg:w-auto justify-end w-4/5 m-5'>
+                <div className='flex justify-end items-center m-5'>
                     <div className="mr-3">
                         <Mypage />
                     </div>
@@ -150,13 +148,13 @@ export default function MainMenu() {
                         Register
                     </button>
                     {/* <Link to='/Register' className='block lg:inline-block p-1.5 mr-3 border rounded text-lg text-white border-white hover:text-red-400 hover:bg-white' >
-                    Register
-                </Link> */}
+                            Register
+                        </Link> */}
                 </div>
             </nav>
 
             <div className='flex h-full'>
-                <div className='flex-col bg-zinc-800 w-1/5 p-5'>
+                <div className='flex-col bg-zinc-800 w-1/5 p-5 min-w-72'>
                     <div className='flex mt-5 ml-5 mb-10'>
                         <input className="input" type='search' style={{ width: '80%' }} />
                         <button className='type="button" p-1 ml-1 border text-base font-appleB text-white border-white hover:bg-white hover:text-black' >
@@ -180,8 +178,6 @@ export default function MainMenu() {
                         </svg>
                         <div className='font-semibold text-lg tracking-tight ml-3 text-white hover:text-red-400'>고객센터<br /></div>
                     </button>
-
-
                 </div>
                 {renderPage()}
             </div>

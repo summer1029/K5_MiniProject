@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { userEmail } from "./AtomSt";
 import { useRecoilState } from "recoil";
+import { Link } from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const MemberUpdatePage = () => {
     const [password, setPassword] = useState("");
@@ -35,7 +40,6 @@ const MemberUpdatePage = () => {
         <div className="bg-black min-h-screen flex justify-center items-center">
             <div className="w-full max-w-md p-8 bg-white rounded-lg">
                 <div className="text-2xl font-extrabold text-center text-red-400 mb-5">회원 정보 수정</div>
-
                 <form className="space-y-2 md:space-y-3">
                     <div>
                         <label htmlFor="name" className="block mb-2 text-base font-medium text-gray-900">Name</label>

@@ -40,6 +40,7 @@ export default function LoginForm() {
       return
     }
 
+    // 로그인 시, 백에 아이디와 비밀번호 post
     fetch('http://10.125.121.181:8080/member/login', {
       method: 'POST',
       headers: {
@@ -81,7 +82,6 @@ export default function LoginForm() {
       </div>
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      {/* <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}> */}
       <form className="space-y-6">
         <div>
           <label htmlFor="email" className="block text-base font-medium leading-6 text-white">Email address</label>

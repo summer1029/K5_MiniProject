@@ -29,7 +29,6 @@ export default function Login() {
   }
 
   return (
-  // <LoginForm onSubmit={handleSubmit} />
   <div>
     {/* 로그인이 되면(isLogin이 true가 되면) Logout 버튼 생성 */}
       {isLogin ? <button className='block lg:inline-block p-1.5 mr-3 border rounded text-lg font-appleB text-white border-white hover:text-red-400 hover:bg-white' onClick={handleLogout}>Logout</button>

@@ -16,19 +16,10 @@ import movie10 from "../assets/poster/dmz.jpg"
 export default function MovieInfo() {
     let apikey = process.env.REACT_APP_APIKEY
 
-    // let seq = useParams().seq()
     const [boxlist, setBoxlist] = useState([])
     const [tag, setTag] = useState([])
 
     const posterImage = [movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10]
-
-    // const options = {
-    //     method: 'GET',
-    //     headers: {
-    //       accept: 'application/json',
-    //       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGQwY2FkMGU1NDAyMzFkODQ1OTI1MjNhNzAxNzc1MyIsInN1YiI6IjY1YzA5NmVlYTM1YzhlMDE3Y2Q3ODE4YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WsPfi3MDkQ3R01A5_w0Cn43_P8_8cCQp7cRoYyylPsg'
-    //     }
-    //   };
 
     useEffect (() => {
         let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?"

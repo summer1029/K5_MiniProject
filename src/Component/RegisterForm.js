@@ -10,15 +10,6 @@ export default function RegisterForm({onSubmit}) {
     const [name, setName] = useState("")
     const [birth, setBirth] = useState("")
 
-    // navigateToLogin 함수가 Login.js에서도 동일하게 선언되고 사용되는데 
-    // 하나만 구현하고 받아와서 쓰는건 안되나?
-    // const navigate = useNavigate()
-    // const navigateToLogin = () => {
-    //     navigate("/Login")
-    // }
-
-    // 가입하고 sign in을 누르면 로그인 화면으로 이동하게 할려면?
-
     const handleEmail = (e) => {
         setEmail(e.currentTarget.value)
 
@@ -58,7 +49,7 @@ export default function RegisterForm({onSubmit}) {
     };
 
   return (
-    <div className="bg-black">       
+    <div className="bg-black min-h-screen">       
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-auto lg:py-10">
             <Link to="/" className="flex items-center mb-6 text-4xl font-bold text-red-400">
                 StellaNeX  
